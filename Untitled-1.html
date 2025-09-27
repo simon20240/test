@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بث مباشر للمباريات - Live Matches</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to complement Tailwind */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .live-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background-color: #e53e3e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+        .tab-button.active {
+            background-color: #a5190d;
+            color: white;
+            border-color: #a5190d;
+        }
+        /* Styles for responsive video player */
+        .aspect-w-16 {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        .aspect-w-16 > iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
+                <img src="https://placehold.co/140x40/a5190d/ffffff?text=YourLogo" alt="Logo" class="h-10">
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-6 rtl:space-x-reverse">
+                <a href="#" class="text-gray-600 hover:text-red-700 font-semibold transition-colors">مباريات اليوم</a>
+                <a href="#" class="text-gray-600 hover:text-red-700 font-semibold transition-colors">أهداف وملخصات</a>
+                <a href="#" class="text-gray-600 hover:text-red-700 font-semibold transition-colors">قنوات البث</a>
+                <a href="#" class="text-gray-600 hover:text-red-700 font-semibold transition-colors">اتصل بنا</a>
+            </nav>
+
+            <!-- Social Media Icons -->
+            <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                <a href="#" class="text-gray-500 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="text-gray-500 hover:text-blue-400 transition-colors"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-gray-500 hover:text-red-600 transition-colors"><i class="fab fa-youtube fa-lg"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4">
+
+        <!-- Match Schedule Tabs -->
+        <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+            <div id="match-tabs" class="grid grid-cols-3 gap-2 text-center font-bold">
+                <button data-tab="yesterday" class="tab-button p-3 rounded-md border-2 border-gray-200 transition-all">مباريات الأمس</button>
+                <button data-tab="today" class="tab-button active p-3 rounded-md border-2 border-transparent transition-all">مباريات اليوم</button>
+                <button data-tab="tomorrow" class="tab-button p-3 rounded-md border-2 border-gray-200 transition-all">مباريات الغد</button>
+            </div>
+        </div>
+
+        <!-- Match Listings -->
+        <div id="match-content">
+            <!-- Today's Matches -->
+            <div id="today-matches" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Live Match Card Example -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 relative flex flex-col">
+                    <div class="live-badge">مباشر</div>
+                    <div class="p-4 bg-gray-50 border-b border-gray-200 text-center">
+                        <p class="font-semibold text-red-700"><i class="fas fa-trophy mr-2"></i>دوري أبطال أوروبا</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex items-center justify-around text-center">
+                            <!-- Team 1 -->
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="https://placehold.co/80x80/004494/ffffff?text=RMA" alt="Team 1 Logo" class="w-16 h-16 mb-2 rounded-full shadow-md">
+                                <h3 class="font-bold text-lg">ريال مدريد</h3>
+                            </div>
+                            <!-- Score -->
+                            <div class="font-black text-4xl text-gray-800">
+                                <span>2 - 1</span>
+                            </div>
+                            <!-- Team 2 -->
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="https://placehold.co/80x80/a6190d/ffffff?text=FCB" alt="Team 2 Logo" class="w-16 h-16 mb-2 rounded-full shadow-md">
+                                <h3 class="font-bold text-lg">برشلونة</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50 border-t border-gray-200 text-sm text-gray-600">
+                        <div class="flex justify-between items-center mb-2">
+                            <span><i class="fas fa-microphone ml-2 text-red-500"></i>المعلق: عصام الشوالي</span>
+                            <span><i class="fas fa-clock ml-2 text-blue-500"></i>الوقت: 22:00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                             <span><i class="fas fa-tv ml-2 text-green-500"></i>القناة: beIN Sports 1</span>
+                        </div>
+                    </div>
+                    <button class="watch-btn w-full bg-red-700 text-white text-center font-bold p-3 hover:bg-red-800 transition-colors" data-match-title="مباراة ريال مدريد وبرشلونة" data-stream-url="https://example.com/your-stream-url-1">مشاهدة المباراة</button>
+                </div>
+
+                <!-- Finished Match Card Example -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                     <div class="p-4 bg-gray-50 border-b border-gray-200 text-center">
+                        <p class="font-semibold text-gray-600"><i class="fas fa-trophy mr-2"></i>الدوري الإنجليزي الممتاز</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex items-center justify-around text-center">
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="https://placehold.co/80x80/da291c/ffffff?text=LIV" alt="Team 1 Logo" class="w-16 h-16 mb-2 rounded-full shadow-md">
+                                <h3 class="font-bold text-lg">ليفربول</h3>
+                            </div>
+                            <div class="font-black text-4xl text-gray-800">
+                                <span>3 - 0</span>
+                            </div>
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="https://placehold.co/80x80/034694/ffffff?text=CHE" alt="Team 2 Logo" class="w-16 h-16 mb-2 rounded-full shadow-md">
+                                <h3 class="font-bold text-lg">تشيلسي</h3>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="p-4 bg-gray-50 border-t border-gray-200 text-sm text-gray-600">
+                        <div class="flex justify-between items-center">
+                            <span><i class="fas fa-microphone ml-2 text-gray-500"></i>المعلق: حفيظ دراجي</span>
+                            <span class="font-bold text-gray-700">انتهت</span>
+                        </div>
+                    </div>
+                    <button class="watch-btn w-full bg-gray-800 text-white text-center font-bold p-3 hover:bg-black transition-colors" data-match-title="أهداف مباراة ليفربول وتشيلسي" data-stream-url="https://example.com/your-goals-url-1">مشاهدة الأهداف</button>
+                </div>
+
+                <!-- Upcoming Match Card Example -->
+                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                     <div class="p-4 bg-gray-50 border-b border-gray-200 text-center">
+                        <p class="font-semibold text-gray-600"><i class="fas fa-trophy mr-2"></i>الدوري الإيطالي</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex items-center justify-around text-center">
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="https://placehold.co/80x80/000000/ffffff?text=JUV" alt="Team 1 Logo" class="w-16 h-16 mb-2 rounded-full shadow-md">
+                                <h3 class="font-bold text-lg">يوفنتوس</h3>
+                            </div>
+                            <div class="font-black text-4xl text-gray-400">
+                                <span>- : -</span>
+                            </div>
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="https://placehold.co/80x80/9f0d1a/ffffff?text=ACM" alt="Team 2 Logo" class="w-16 h-16 mb-2 rounded-full shadow-md">
+                                <h3 class="font-bold text-lg">ميلان</h3>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="p-4 bg-gray-50 border-t border-gray-200 text-sm text-gray-600">
+                        <div class="flex justify-between items-center">
+                            <span><i class="fas fa-microphone ml-2 text-gray-500"></i>المعلق: فارس عوض</span>
+                            <span><i class="fas fa-clock ml-2 text-blue-500"></i>الوقت: 21:45</span>
+                        </div>
+                    </div>
+                    <div class="block bg-gray-300 text-gray-500 text-center font-bold p-3 cursor-not-allowed">يبدأ قريباً</div>
+                </div>
+
+            </div>
+
+            <!-- Yesterday's Matches (Hidden by default) -->
+            <div id="yesterday-matches" class="tab-content hidden">
+                <div class="bg-white p-10 rounded-lg shadow-md text-center">
+                    <i class="fas fa-calendar-times fa-3x text-gray-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700">لا توجد مباريات للأمس</h3>
+                    <p class="text-gray-500">الرجاء التحقق مرة أخرى في وقت لاحق.</p>
+                </div>
+            </div>
+
+            <!-- Tomorrow's Matches (Hidden by default) -->
+            <div id="tomorrow-matches" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Upcoming Match Card Example -->
+                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                     <div class="p-4 bg-gray-50 border-b border-gray-200 text-center">
+                        <p class="font-semibold text-gray-600"><i class="fas fa-trophy mr-2"></i>الدوري الألماني</p>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex items-center justify-around text-center">
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="https://placehold.co/80x80/dc052d/ffffff?text=BAY" alt="Team 1 Logo" class="w-16 h-16 mb-2 rounded-full shadow-md">
+                                <h3 class="font-bold text-lg">بايرن ميونخ</h3>
+                            </div>
+                            <div class="font-black text-4xl text-gray-400">
+                                <span>- : -</span>
+                            </div>
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="https://placehold.co/80x80/fde100/000000?text=BVB" alt="Team 2 Logo" class="w-16 h-16 mb-2 rounded-full shadow-md">
+                                <h3 class="font-bold text-lg">بوروسيا دورتموند</h3>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="p-4 bg-gray-50 border-t border-gray-200 text-sm text-gray-600">
+                        <div class="flex justify-between items-center">
+                            <span><i class="fas fa-microphone ml-2 text-gray-500"></i>لم يحدد</span>
+                            <span><i class="fas fa-clock ml-2 text-blue-500"></i>الوقت: 20:30</span>
+                        </div>
+                    </div>
+                    <div class="block bg-gray-300 text-gray-500 text-center font-bold p-3 cursor-not-allowed">لم تبدأ بعد</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto p-8 text-center">
+            <p>&copy; 2024 جميع الحقوق محفوظة لموقعك.</p>
+            <p class="text-gray-400 text-sm mt-2">تم تصميم هذا الموقع ليكون سريعًا وآمنًا وقابلًا للتخصيص بالكامل.</p>
+        </div>
+    </footer>
+
+    <!-- Stream Modal -->
+    <div id="stream-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[100] hidden">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-full overflow-hidden">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 id="modal-title" class="text-xl font-bold">مشاهدة المباراة</h3>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+            </div>
+            <div class="p-1 md:p-4 bg-black">
+                <!-- Aspect ratio container for the video player -->
+                <div class="aspect-w-16">
+                    <iframe id="stream-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="p-4 bg-gray-50 border-t text-center">
+                <p class="text-sm text-gray-600">إذا كان البث لا يعمل، يرجى محاولة تحديث الصفحة.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const tab = button.getAttribute('data-tab');
+                    tabContents.forEach(content => {
+                        content.id === `${tab}-matches` ? content.classList.remove('hidden') : content.classList.add('hidden');
+                    });
+                });
+            });
+
+            // Modal functionality
+            const modal = document.getElementById('stream-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const modalTitle = document.getElementById('modal-title');
+            const streamIframe = document.getElementById('stream-iframe');
+            const watchButtons = document.querySelectorAll('.watch-btn');
+
+            function openModal(title, url) {
+                modalTitle.textContent = title;
+                streamIframe.setAttribute('src', url);
+                modal.classList.remove('hidden');
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                streamIframe.setAttribute('src', ''); // Stop video playback
+            }
+
+            watchButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const matchTitle = button.getAttribute('data-match-title');
+                    const streamUrl = button.getAttribute('<"https://ggyyh.koooooralive.com/albaplayer/sports-c1/"  >');
+                    openModal(matchTitle, streamUrl);
+                });
+            });
+
+            closeModalBtn.addEventListener('click', closeModal);
+
+            // Close modal when clicking on the background overlay
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Close modal with the Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
